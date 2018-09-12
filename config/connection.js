@@ -1,7 +1,4 @@
-// Export connection for our ORM to use.
-module.exports = () => {
-
-    // Set up MySQL connection.
+// Set up MySQL connection.
     const mysql = require("mysql");
 
     const connection = mysql.createConnection({
@@ -20,4 +17,6 @@ module.exports = () => {
     }
     console.log("connected as id " + connection.threadId);
     });
-};
+
+// Export connection for our ORM to use.
+module.exports = connection;
