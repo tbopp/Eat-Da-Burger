@@ -1,3 +1,6 @@
+// Requiring database info from dbInfo.js file, which has database specific information referenced from a local .env file
+const dbInfo = require("./dbInfo.js");
+
 // Set up MySQL connection.
 const mysql = require("mysql");
 
@@ -7,11 +10,11 @@ if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     connection = mysql.createConnection({
-        host: "localhost",
-        port: 3306,
-        user: "root",
-        password: "PASSWORD",
-        database: "burgers_db"
+        host: dbInfo.host,
+        port: dbInfo.port,
+        user: dbInfo.user,
+        password: dbInfo.password,
+        database: dbInfo.database
     });
 };
 
