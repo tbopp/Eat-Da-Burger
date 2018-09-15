@@ -1,31 +1,40 @@
-<h1>Burgers!</h1>
+<div class="jumbotron jumbotron-fluid">
+   <h1 class="display-3">EAT-DA-BURGER!</h1>
+   <img src="/public/assets/img/burger.jpg">
 
-<h2>Burgers that are not yet devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    <p>
-      {{this.burger_name}}
-    </p>
-    {{/unless}}
-  {{/each}}
-</ul>
-{{!-- 
-<h2>Burgers that have been devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if devoured=false}}
-    {{/if}}
-  {{/each}}
-</ul> --}}
+  <div class="container">
+   <div class="row">
+       <div class="col-md-6" id="not_devoured">
+           <h2>Burgers that are not yet devoured!</h2>
+           {{#each burgers}}
+           {{#unless devoured}}
+           <div class="not-eaten">
+               {{id}}. {{burger_name}}
+               <button class="devoured" data-id="{{id}}" data-devoured="{{devoured}}">
+                   EAT ME!
+               </button></div>
+           {{/unless}}
+           {{/each}}
+       </div>
+       <div class="col-md-6" id="devoured">
+           <h2>Devoured Burgers!</h2>
+           {{#each burgers}}
+           {{#if devoured}}
+           <div class="eaten">
+               {{id}}. {{burger_name}}
+           </div>
+           {{/if}}
+           {{/each}}
+       </div>
+   </div>
+</div>
 
 <h2>Add a Burger</h2>
 <form class="create-form">
 
   <div class="form-group">
     <label for="bu">Burger Name:</label>
-    <input type="text" id="bu" name="name">
+    <input type="text" id="bu" name="burger_name">
   </div>
 
   <div class="form-group">
@@ -36,66 +45,3 @@
 
   <button type="submit">Add Burger</button>
 </form>
-
-<script type="text/javascript">
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function () {
-    $(".change-devoured").on("click", function (event) {
-        var id = $(this).data("id");
-        var newDevoured = $(this).data("newdevoured");
-
-        var newDevouredState = {
-            devoured: newDevoured
-        };
-
-        // Send the PUT request.
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
-            data: newDevouredState
-        }).then(
-            function () {
-                console.log("changed devoured to", newDevoured);
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-    });
-
-    $(".create-form").on("submit", function (event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-
-        var newBurger = {
-            burger_name: $("#bu").val().trim(),
-            devoured: $("[name=devoured]:checked").val().trim()
-        };
-
-        // Send the POST request.
-        $.ajax("/api/burgers", {
-            type: "POST",
-            data: newBurger
-        }).then(
-            function () {
-                console.log("created new burger");
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-    });
-
-    $(".delete-cat").on("click", function (event) {
-        var id = $(this).data("id");
-
-        // Send the DELETE request.
-        $.ajax("/api/burgers/" + id, {
-            type: "DELETE"
-        }).then(
-            function () {
-                console.log("deleted burger", id);
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-    });
-});
-</script>
