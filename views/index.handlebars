@@ -1,53 +1,46 @@
-<div style="background:transparent !important" class="jumbotron jumbotron-fluid">
-    
-    <div class="text-center">
-        <h1 class="display-4">EAT-DA-BURGER!</h1>
-        <br>
-        <img src="/assets/img/burger.png" class="rounded" class="img-fluid" alt="Responsive image">
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" id="not_devoured">
-                <h2>Hot'n Fresh!</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-2">
+            <h2>Hot'n Fresh!</h2>
+            <ol>
                 {{#each burgers}}
-                {{#unless devoured}}
-                <div class="not-eaten">
-                    {{id}}. {{burger_name}}
-                    <button class="devoured" data-id="{{id}}" data-devoured="{{devoured}}">
-                        Devour!
-                    </button></div>
+                {{#unless this.devoured}}
+                <li class="burger-list">{{this.burger_name}}
+                    <br><button type="button" class="btn btn-success btn-sm" class="devour-btn" data-id="{{id}}">Devour it!</button>
+                </li>
                 {{/unless}}
                 {{/each}}
-            </div>
-            <div class="col-md-6" id="devoured" align="right">
-                <h2>Devoured Burgers!</h2>
+            </ol>
+        </div>
+        <div class="col-md-5 offset-md-1">
+            <h2>Devoured!</h2>
+            <ol>
                 {{#each burgers}}
-                {{#if devoured}}
-                <div class="eaten">
-                    {{id}}. {{burger_name}}
-                </div>
+                {{#if this.devoured}}
+                <li class="burger-list-devoured">{{this.burger_name}}
+                </li>
                 {{/if}}
                 {{/each}}
-            </div>
+            </ol>
         </div>
     </div>
+</div>
 
-    <br>
+<br>
 
-    <h2 align="center">Add a Burger</h2>
-    <form class="create-form">
-
-        <div class="form-group" align="center">
-            <label for="bu">Burger Name:</label>
-            <input type="text" id="bu" name="burger_name">
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6 offset-md-3 text-center">
+            <h2>Add a Burger</h2>
+            <form>
+                <div class="form-group">
+                    <label id="input-label" for="add-burger-box">Don't see anything you like? Add your own!</label>
+                    <input type="text" class="form-control" id="add-burger-box" placeholder="Enter a burger name">
+                    <label for="devoured">What is the status of the burger?</label><br>
+                    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
+                    <input type="radio" name="devoured" value="0"> Hot'n Fresh!<br><br>
+                    <button type="submit" id="submit-burger" class="btn btn-primary">Add Burger</button>
+            </form>
         </div>
-
-        <div class="form-group" align="center">
-            <label for="devoured">What is the status of the burger?</label><br>
-            <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-            <input type="radio" name="devoured" value="0"> Hot'n Fresh!<br><br>
-            <button type="submit" class="submit">Add Burger</button>
-        </div>
-
-    </form>
+    </div>
+</div>
