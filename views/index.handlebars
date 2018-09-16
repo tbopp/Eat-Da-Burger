@@ -1,48 +1,53 @@
-<div class="jumbotron jumbotron-fluid">
-   <h1 class="display-3" align="center">EAT-DA-BURGER!</h1>
+<div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+    
+    <div class="text-center">
+        <h1 class="display-4">EAT-DA-BURGER!</h1>
+        <br>
+        <img src="/assets/img/burger.png" class="rounded" class="img-fluid" alt="Responsive image">
+    </div>
 
-  <div class="container">
-   <div class="row">
-       <div class="col-md-6" id="not_devoured">
-           <h2>Hot'n Fresh!</h2>
-           {{#each burgers}}
-           {{#unless devoured}}
-           <div class="not-eaten">
-               {{id}}. {{burger_name}}
-               <button class="devoured" data-id="{{id}}" data-devoured="{{devoured}}">
-                   EAT ME!
-               </button></div>
-           {{/unless}}
-           {{/each}}
-       </div>
-       <div class="col-md-6" id="devoured" align="right">
-           <h2>Devoured Burgers!</h2>
-           {{#each burgers}}
-           {{#if devoured}}
-           <div class="eaten">
-               {{id}}. {{burger_name}}
-           </div>
-           {{/if}}
-           {{/each}}
-       </div>
-   </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="not_devoured">
+                <h2>Hot'n Fresh!</h2>
+                {{#each burgers}}
+                {{#unless devoured}}
+                <div class="not-eaten">
+                    {{id}}. {{burger_name}}
+                    <button class="devoured" data-id="{{id}}" data-devoured="{{devoured}}">
+                        Devour!
+                    </button></div>
+                {{/unless}}
+                {{/each}}
+            </div>
+            <div class="col-md-6" id="devoured" align="right">
+                <h2>Devoured Burgers!</h2>
+                {{#each burgers}}
+                {{#if devoured}}
+                <div class="eaten">
+                    {{id}}. {{burger_name}}
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
 
-<br>
+    <br>
 
-<h2 align="center">Add a Burger</h2>
-<form class="create-form">
+    <h2 align="center">Add a Burger</h2>
+    <form class="create-form">
 
-  <div class="form-group" align="center">
-    <label for="bu">Burger Name:</label>
-    <input type="text" id="bu" name="burger_name">
-  </div>
+        <div class="form-group" align="center">
+            <label for="bu">Burger Name:</label>
+            <input type="text" id="bu" name="burger_name">
+        </div>
 
-  <div class="form-group" align="center">
-    <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="devoured" value="0"> Hot'n Fresh!<br><br>
-  <button type="submit" class="submit">Add Burger</button>
-  </div>
+        <div class="form-group" align="center">
+            <label for="devoured">What is the status of the burger?</label><br>
+            <input type="radio" name="devoured" value="1" checked> Devoured!<br>
+            <input type="radio" name="devoured" value="0"> Hot'n Fresh!<br><br>
+            <button type="submit" class="submit">Add Burger</button>
+        </div>
 
-</form>
+    </form>
