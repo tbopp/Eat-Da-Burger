@@ -7,15 +7,10 @@ const mysql = require("mysql");
 let connection;
 
 if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
+    connection = mysql.createConnection(dbInfo.myJAWSDBserver);
+
 } else {
-    connection = mysql.createConnection({
-        host: dbInfo.host,
-        port: dbInfo.port,
-        user: dbInfo.user,
-        password: dbInfo.password,
-        database: dbInfo.database
-    });
+    connection = mysql.createConnection(dbInfo.mySQLserver);
 };
 
 // Make connection.

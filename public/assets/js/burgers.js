@@ -17,12 +17,13 @@ $(function () {
             type: "PUT",
             data: newDevouredState
         }).then(function () {
+            console.log("changed devoured to", newSleep);
             // Reload the page to get the updated list
             location.reload();
         });
     });
 
-    $(".create-form").on("submit", function (event) {
+    $(".submit").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
