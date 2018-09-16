@@ -18,7 +18,7 @@ function objToSql(ob) {
 
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
-        var value = ob[key];
+        let value = ob[key];
         // check to skip hidden properties
         if (Object.hasOwnProperty.call(ob, key)) {
             // if string with spaces, add quotations
@@ -37,7 +37,7 @@ function objToSql(ob) {
 // **~ ORM Object for all our SQL statement functions. ~**
 let orm = {
     all: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+        let queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
@@ -46,7 +46,7 @@ let orm = {
         });
     },
     create: function (table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
+        let queryString = "INSERT INTO " + table;
 
         queryString += " (";
         queryString += cols.toString();
@@ -67,7 +67,7 @@ let orm = {
     },
 
     update: function (table, objColVals, condition, cb) {
-        var queryString = "UPDATE " + table;
+        let queryString = "UPDATE " + table;
 
         queryString += " SET ";
         queryString += objToSql(objColVals);
