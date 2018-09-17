@@ -6,7 +6,7 @@
                 {{#each burgers}}
                 {{#unless this.devoured}}
                 <li class="burger-list">{{this.burger_name}}
-                    <br><button type="button" class="btn btn-success btn-sm" class="devour-btn" data-id="{{id}}">Devour it!</button>
+                    <br><button type="button" class="btn btn-success btn-sm devour-btn" data-id="{{id}}">Devour it!</button>
                 </li>
                 {{/unless}}
                 {{/each}}
@@ -18,6 +18,7 @@
                 {{#each burgers}}
                 {{#if this.devoured}}
                 <li class="burger-list-devoured">{{this.burger_name}}
+                    <br><button type="button" class="btn btn-warning btn-sm order-btn" data-id="{{id}}">Re-Order!</button>
                 </li>
                 {{/if}}
                 {{/each}}
@@ -30,7 +31,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="offset-md-3 col-md-6 offset-md-3 text-center">
+        <div class="col-md-6 offset-md-3 text-center">
             <h2>Add a Burger</h2>
             <form>
                 <div class="form-group">

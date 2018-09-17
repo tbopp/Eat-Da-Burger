@@ -3,7 +3,7 @@
 // Making sure the DOM is completely loaded and ready to be used before running the script.
 $(function () {
 
-    // Click event for devouring a burger using a PUT request to update devour state.
+    // Click event for devouring a burger using a PUT request to update devoured state, moving burger to devoured list.
     $(".devour-btn").on("click", function (event) {
         let id = $(this).data("id");
         let newDevouredState = {
@@ -18,12 +18,31 @@ $(function () {
         });
 
         console.log("Burger ID: ", id)
-        console.log("Devoured?: ", newDevouredState.devoured)
+        console.log("Devoured?: ", newDevouredState)
         console.log("Well that was fast. Could you even taste it?!");
     });
 
+    // Click event for re-ordering of a devoured burger using a PUT request to update devoured state, moving burger to Hot'n Fresh list. 
+    $(".order-btn").on("click", function (event) {
+        let id = $(this).data("id");
+        let newDevouredState = {
+            devoured: false,
+        };
+
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: newDevouredState
+        }).then(function () {
+            location.reload();
+        });
+
+        console.log("Burger ID: ", id)
+        console.log("Devoured?: ", newDevouredState)
+        console.log("Hot'n Fresh!!");
+    });
+
     // Click event for adding a new burger to the database using a POST request to create a new burger object (name and devoured state).
-    $(".submit-burger").on("click", function (event) {
+    $("#submit-burger").on("click", function (event) {
         event.preventDefault();
 
         let newBurger = {

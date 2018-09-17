@@ -3,11 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
+    {{!-- Bootstrap CDN --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    {{!-- Google Fonts CDN --}}
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma" rel="stylesheet">
+    {{!-- Link to custom CSS --}}
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-    <title>Eat-Da-Burger!</title>
+    {{!-- jQuery library --}}
     <script src="https://code.jquery.com/jquery.js"></script>
+    <title>Eat-Da-Burger!</title>
 </head>
 
 <body>
@@ -21,6 +26,7 @@
         </div>
     </div>
     {{{ body }}}
+    {{!-- Logic file for AJAX calls --}}
     <script type="text/javascript" src="/assets/js/burgers.js"></script>
 </body>
 

@@ -17,7 +17,7 @@ let burger = {
         orm.update("burgers", objColVals, condition, function (res) {
             cb(res);
         });
-    },
+    }
 };
 
 // Export the database functions for the controller (burgers_controller.js).
