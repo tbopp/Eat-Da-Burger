@@ -14,23 +14,23 @@ function printQuestionMarks(num) {
     }
 
     return arr.toString();
-};
+}
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
     let arr = [];
 
     // loop through the keys and push the key/value as a string int arr
-    for (var key in ob) {
+    for (const key in ob) {
         let value = ob[key];
         // check to skip hidden properties
         if (Object.hasOwnProperty.call(ob, key)) {
             // if it's string with spaces, add quotations
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
+            if (typeof value === "string" && value.includes(" ")) {
+                value = `'${value}'`;
             }
             // e.g. {burger_name: 'Hamburger Mary'} => ["burger_name='Hamburger Mary'"], {devoured: true} => ["devoured=true"]
-            arr.push(key + "=" + value);
+            arr.push(`${key}=${value}`);
         }
     }
 
@@ -41,9 +41,9 @@ function objToSql(ob) {
 // ORM Object for all SQL statement functions.
 let orm = {
 
-    all: function (tableInput, cb) {
-        let queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function (err, result) {
+    all(tableInput, cb) {
+        let queryString = `SELECT * FROM ${tableInput};`;
+        connection.query(queryString, (err, result) => {
             if (err) {
                 throw err;
             }
@@ -51,8 +51,8 @@ let orm = {
         });
     },
 
-    create: function (table, cols, vals, cb) {
-        let queryString = "INSERT INTO " + table;
+    create(table, cols, vals, cb) {
+        let queryString = `INSERT INTO ${table}`;
 
         queryString += " (";
         queryString += cols.toString();
@@ -63,7 +63,7 @@ let orm = {
 
         console.log(queryString);
 
-        connection.query(queryString, vals, function (err, result) {
+        connection.query(queryString, vals, (err, result) => {
             if (err) {
                 throw err;
             }
@@ -71,8 +71,8 @@ let orm = {
         });
     },
 
-    update: function (table, objColVals, condition, cb) {
-        let queryString = "UPDATE " + table;
+    update(table, objColVals, condition, cb) {
+        let queryString = `UPDATE ${table}`;
 
         queryString += " SET ";
         queryString += objToSql(objColVals);
@@ -80,7 +80,7 @@ let orm = {
         queryString += condition;
 
         console.log(queryString);
-        connection.query(queryString, function (err, result) {
+        connection.query(queryString, (err, result) => {
             if (err) {
                 throw err;
             }

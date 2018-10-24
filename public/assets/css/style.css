@@ -10,3 +10,7 @@ body {
 img {
     margin-top: 10px;
 }
+
+#burger-form input:invalid {
+    border-left-color: red;
+  }

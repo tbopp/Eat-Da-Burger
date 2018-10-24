@@ -1,7 +1,7 @@
 // jQuery functions for capturing button click events, including devouring available burgers and adding a new burgers to the list. PUT and POST requests, then reload the page to see the new list.
 
 // Making sure the DOM is completely loaded and ready to be used before running the script.
-$(function () {
+$(() => {
 
     // Click event for devouring a burger using a PUT request to update devoured state, moving burger to devoured list.
     $(".devour-btn").on("click", function (event) {
@@ -10,10 +10,10 @@ $(function () {
             devoured: true
         };
 
-        $.ajax("/api/burgers/" + id, {
+        $.ajax(`/api/burgers/${id}`, {
             type: "PUT",
             data: newDevouredState
-        }).then(function () {
+        }).then(() => {
             location.reload();
         });
 
@@ -29,10 +29,10 @@ $(function () {
             devoured: false,
         };
 
-        $.ajax("/api/burgers/" + id, {
+        $.ajax(`/api/burgers/${id}`, {
             type: "PUT",
             data: newDevouredState
-        }).then(function () {
+        }).then(() => {
             location.reload();
         });
 
@@ -42,7 +42,7 @@ $(function () {
     });
 
     // Click event for adding a new burger to the database using a POST request to create a new burger object (name and devoured state).
-    $("#submit-burger").on("click", function (event) {
+    $("#submit-burger").on("click", event => {
         event.preventDefault();
 
         let newBurger = {
@@ -53,9 +53,9 @@ $(function () {
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
-        }).then(function () {
+        }).then(() => {
             location.reload();
         });
-        console.log("New burger: " + newBurger + " is hot'n fresh out the kitchen!");
+        console.log(`New burger: ${newBurger} is hot'n fresh out the kitchen!`);
     });
 });
